@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| nickname        | string  | null: false |
+| email           | string  | null: false |
+| password        | string  | null: false |
+| last-name       | string  | null: false |
+| first-name      | string  | null: false |
+| last-name-kana  | string  | null: false |
+| first-name-kana | string  | null: false |
+| user-birth-date | integer | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :orders
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| image              | string  | null: false |
+| item-name          | string  | null: false |
+| item-info          | text    | null: false |
+| category           | string  | null: false |
+| status             | string  | null: false |
+| shipping-fee       | string  | null: false |
+| item-prefecture    | string  | null: false |
+| scheduled-delivery | string  | null: false |
+| price              | integer | null: false |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one    :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders テーブル
 
-* Deployment instructions
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| card-number    | integer    | null: false |
+| card-exp-month | integer    | null: false |
+| card-exp-year  | integer    | null: false |
+| card-cvc       | integer    | null: false |
 
-* ...
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one    :input
+
+## inputs テーブル
+
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| postal-code  | integer | null: false |
+| prefecture   | string  | null: false |
+| city         | string  | null: false |
+| addresses    | string  | null: false |
+| building     | string  | null: false |
+| phone-number | integer | null: false |
+
+### Association
+
+- belongs_to :order
