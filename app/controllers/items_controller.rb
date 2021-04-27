@@ -9,4 +9,10 @@ class ItemsController < ApplicationController
 
   def create
   end
+
+  private
+
+  # def item_params
+  #   params.require(:item).permit(:image, :genre_id)
+  # end
 end
