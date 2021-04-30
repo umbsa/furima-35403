@@ -60,6 +60,11 @@ RSpec.describe OrderInput, type: :model do
         @order_input.valid?
         expect(@order_input.errors.full_messages).to include("Phone number は半角数字のみ使えます")
       end
+      it 'phone_numberが英数混合のとき' do
+        @order_input.phone_number = 'abo01234567'
+        @order_input.valid?
+        expect(@order_input.errors.full_messages).to include("Phone number は半角数字のみ使えます")
+      end
       it 'phone_numberが正しく入力されていないとき' do
         @order_input.phone_number = 'abcdefghijk'
         @order_input.valid?
