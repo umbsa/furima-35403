@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:index, :create]
-  before_action :authenticate_user!, only: :index
-  before_action :move_to_root, only: :index
+  before_action :set_order
+  before_action :authenticate_user!
+  before_action :move_to_root
 
   def index
     @order_input = OrderInput.new
