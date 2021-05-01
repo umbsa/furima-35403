@@ -8,11 +8,12 @@ class OrderInput
     validates :city
     validates :addresses
     validates :phone_number, format: {with: /\A\d{10,11}\z/, message: "is invalid."} 
-    validates :phone_number, format: { with: /\A[0-9]+\z/,message: "は半角数字のみ使えます" }
     validates :user_id
     validates :item_id
     validates :token, presence: {message: "クレジットカード情報を正しく入力してください"}
   end
+
+  validates :phone_number, format: { with: /\A[0-9]+\z/,message: "は半角数字のみ使えます" }
 
 
   def save
